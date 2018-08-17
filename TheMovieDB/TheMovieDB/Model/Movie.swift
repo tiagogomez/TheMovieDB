@@ -1,8 +1,8 @@
 //
-//  Movie.swift
+//  TestMovie.swift
 //  TheMovieDB
 //
-//  Created by Santiago Gomez Giraldo on 8/16/18.
+//  Created by Santiago Gomez Giraldo on 8/17/18.
 //  Copyright © 2018 Globant. All rights reserved.
 //
 
@@ -16,12 +16,11 @@ class Movie: NSObject {
     var id: Int?
     var original_title: String?
     
-    init(poster_path:String, overview:String, genre_ids:[Int], id:Int, original_title:String) {
-        self.poster_path = poster_path
-        self.overview = overview
-        self.genre_ids = genre_ids
-        self.id = id
-        self.original_title = original_title
+    init(json: [String: Any]) {
+        self.poster_path = json["poster_path"] as? String
+        self.overview = json["overview"] as? String
+        self.genre_ids = json["genre_ids"] as? [Int]
+        self.id = json["id"] as? Int
+        self.original_title = json["original_title"] as? String
     }
-
 }

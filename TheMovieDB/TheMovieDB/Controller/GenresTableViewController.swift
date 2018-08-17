@@ -13,14 +13,35 @@ class GenresTableViewController: UITableViewController {
     
     @IBOutlet var tableview: UITableView!
     
-    var genres=[Genres]()
-
+    //Test
+    
+    //Test
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        MovieFacade.shared.getGenres()
-        MovieFacade.shared.getPopulars()
-        MovieFacade.shared.getTopRated()
-        print("Testing branch")
+        /*TESTING-------------------*/
+        MovieFacade.shared.getTopRated { (topRatedMovies) in
+            for movie in topRatedMovies{
+                print("Top Rated Movies: ", movie.original_title ?? "")
+            }
+        }
+        
+        print("")
+        
+        MovieFacade.shared.getPopulars { (popularMovies) in
+            for movie in popularMovies{
+                print("Popular Movies: ", movie.original_title ?? "")
+                for genre in movie.genre_ids!{
+                    print(genre)
+                }
+            }
+        }
+        
+        MovieFacade.shared.getGenres { (genres) in
+            for genre in genres!{
+                print("Genres: ",genre.name)
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -42,14 +63,10 @@ class GenresTableViewController: UITableViewController {
 
     override func tableView( _ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.genres.count
+        return 0
     }
     
-    override func tableView( _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customcell", for: indexPath)
-        cell.textLabel?.text = genres[indexPath.item].name
-        return cell
-    }
+
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
