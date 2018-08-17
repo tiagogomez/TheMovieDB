@@ -20,6 +20,7 @@ class GenresTableViewController: UITableViewController {
         MovieFacade.shared.getGenres()
         MovieFacade.shared.getPopulars()
         MovieFacade.shared.getTopRated()
+        print("Testing branch")
     }
     
     override func viewDidAppear(_ animated: Bool) {
