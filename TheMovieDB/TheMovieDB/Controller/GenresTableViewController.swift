@@ -13,40 +13,33 @@ class GenresTableViewController: UITableViewController {
     
     @IBOutlet var tableview: UITableView!
     
-    //Test
+    let movieFacade = MovieFacade()
     
     //Test
+    var genresList = [Genres]()
+    //Test
+    
+    private func loadSampleGenres() {
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*TESTING-------------------*/
-        MovieFacade.shared.getTopRated { (topRatedMovies) in
-            for movie in topRatedMovies{
-                print("Top Rated Movies: ", movie.original_title ?? "")
-            }
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            print("soy ipad")
         }
-        
-        print("")
-        
-        MovieFacade.shared.getPopulars { (popularMovies) in
-            for movie in popularMovies{
-                print("Popular Movies: ", movie.original_title ?? "")
-                for genre in movie.genre_ids!{
-                    print(genre)
-                }
-            }
-        }
-        
-        MovieFacade.shared.getGenres { (genres) in
+        movieFacade.getGenres { [weak self](genres) in
             for genre in genres!{
-                print("Genres: ",genre.name)
+                print("Genres: ", genre.name)
             }
+            self?.genresList=(genres)!
+            self?.tableview.reloadData()
         }
     }
     
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //tableview.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,26 +50,26 @@ class GenresTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView( _ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return genresList.count
     }
     
 
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cellIdentifier = "GenresTableViewCell"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? GenresTableViewCell else {             fatalError("The dequeued cell is not an instance of MealTableViewCell.")
+        }
+        let genre = genresList[indexPath.row]
+        cell.genreName.text = genre.name
+        cell.genreID.text = String(genre.iD)
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

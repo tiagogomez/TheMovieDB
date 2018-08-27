@@ -15,12 +15,21 @@ class Movie: NSObject {
     var genre_ids:[Int]?
     var id: Int?
     var original_title: String?
+    //var image: UIImage?
     
     init(json: [String: Any]) {
-        self.poster_path = json["poster_path"] as? String
+        let imageUrl = json["poster_path"] as? String 
+        self.poster_path = "https://image.tmdb.org/t/p/w154/" + imageUrl!
         self.overview = json["overview"] as? String
         self.genre_ids = json["genre_ids"] as? [Int]
         self.id = json["id"] as? Int
         self.original_title = json["original_title"] as? String
     }
+}
+
+enum MovieListType{
+    case nowPlaying
+    case topRated
+    case popular
+    case upcomming
 }

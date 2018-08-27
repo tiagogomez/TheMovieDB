@@ -8,16 +8,16 @@
 
 import Foundation
 import Alamofire
+import AlamofireImage
 
 final class MovieFacade {
-    
-    static let shared = MovieFacade()
-    
+        
     private let genresUrl = "https://api.themoviedb.org/3/genre/movie/list?api_key=1f4d7de5836b788bdfd897c3e0d0a24b&language=en-US"
     
     private let popularUrl = "https://api.themoviedb.org/3/movie/popular?api_key=1f4d7de5836b788bdfd897c3e0d0a24b"
     
     private let topRatedUrl = "https://api.themoviedb.org/3/movie/top_rated?api_key=1f4d7de5836b788bdfd897c3e0d0a24b"
+    
     
     func getGenres(completionHandler:@escaping ([Genres]?) -> Void){
         var genres = [Genres]()
@@ -43,39 +43,44 @@ final class MovieFacade {
     }
     
     
-    func getPopulars(completionHandler:@escaping ([Movie]) -> Void){
+    func getMoviesList(listType: MovieListType, completionHandler:@escaping ([Movie]) -> Void){
         var movieList = [Movie]()
-        
-        Alamofire.request(popularUrl).responseJSON { (response) in
+        let url:String?
+        switch listType {
+        case .popular:
+            url=popularUrl
+        case .topRated:
+            url=topRatedUrl
+        default:
+            url=topRatedUrl
+        }
+        Alamofire.request(url!).responseJSON { (response) in
             
             if let popularJSON = response.result.value{
                 let movieJSON:Dictionary = popularJSON as! [String:Any]
                 let resultMovies = movieJSON["results"] as! [[String:Any]]
-                for movie in resultMovies{
+                /*movieList = resultMovies.map({
+                    return Movie(json: $0)
+                    
+                })*/
+                movieList = resultMovies.map(Movie.init(json: ))
+                /*for movie in resultMovies{
                     let newMovie = Movie(json: movie)
                     movieList.append(newMovie)
-                }
+                }*/
                 completionHandler(movieList)
             }
         }
     }
     
-    func getTopRated(completionHandler:@escaping(([Movie]) -> Void)){
-        var movieList = [Movie]()
-        
-        Alamofire.request(topRatedUrl).responseJSON { (response) in
-            
-            if let testJSON = response.result.value {
-                let dataJSON:Dictionary = testJSON as! [String: Any]
-                let listJSON = dataJSON["results"] as! [[String:Any]]
-                for movie in listJSON{
-                    let newMovie = Movie(json: movie)
-                    movieList.append(newMovie)
-                }
-                completionHandler(movieList)
+    /*func getMovieImage(image_path: String, completionHandler:@escaping (Image) -> Void){
+        Alamofire.request("https://image.tmdb.org/t/p/w154/"+image_path).responseImage { response in
+            if let image = response.result.value {
+                //print("image downloaded: \(image)")
+                completionHandler(image)
             }
         }
-    }
+    }*/
 }
 
 
