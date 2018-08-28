@@ -14,9 +14,9 @@ final class MovieFacade {
         
     private let genresUrl = "https://api.themoviedb.org/3/genre/movie/list?api_key=1f4d7de5836b788bdfd897c3e0d0a24b&language=en-US"
     
-    private let popularUrl = "https://api.themoviedb.org/3/movie/popular?api_key=1f4d7de5836b788bdfd897c3e0d0a24b"
+    //private let popularUrl = "https://api.themoviedb.org/3/movie/popular?api_key=1f4d7de5836b788bdfd897c3e0d0a24b"
     
-    private let topRatedUrl = "https://api.themoviedb.org/3/movie/top_rated?api_key=1f4d7de5836b788bdfd897c3e0d0a24b"
+    //private let topRatedUrl = "https://api.themoviedb.org/3/movie/top_rated?api_key=1f4d7de5836b788bdfd897c3e0d0a24b"
     
     
     func getGenres(completionHandler:@escaping ([Genres]?) -> Void){
@@ -43,16 +43,16 @@ final class MovieFacade {
     }
     
     
-    func getMoviesList(listType: MovieListType, completionHandler:@escaping ([Movie]) -> Void){
+    func getMoviesList(listType: MovieListType, numberOfPage: Int, completionHandler:@escaping ([Movie]) -> Void){
         var movieList = [Movie]()
-        let url:String?
+        var url:String?
         switch listType {
         case .popular:
-            url=popularUrl
+            url =/*popularUrl*/"https://api.themoviedb.org/3/movie/popular?api_key=1f4d7de5836b788bdfd897c3e0d0a24b&page=\(numberOfPage)"
         case .topRated:
-            url=topRatedUrl
+            url =/*topRatedUrl*/"https://api.themoviedb.org/3/movie/top_rated?api_key=1f4d7de5836b788bdfd897c3e0d0a24b&page=\(numberOfPage)"
         default:
-            url=topRatedUrl
+            url="https://api.themoviedb.org/3/movie/popular?api_key=1f4d7de5836b788bdfd897c3e0d0a24b&page=\(numberOfPage)"
         }
         Alamofire.request(url!).responseJSON { (response) in
             
@@ -63,11 +63,11 @@ final class MovieFacade {
                     return Movie(json: $0)
                     
                 })*/
-                movieList = resultMovies.map(Movie.init(json: ))
-                /*for movie in resultMovies{
+                //movieList = resultMovies.map(Movie.init(json: ))
+                for movie in resultMovies{
                     let newMovie = Movie(json: movie)
                     movieList.append(newMovie)
-                }*/
+                }
                 completionHandler(movieList)
             }
         }

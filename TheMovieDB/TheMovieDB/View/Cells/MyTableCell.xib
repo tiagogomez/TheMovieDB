@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyCell" rowHeight="181" id="KGk-i7-Jjw" customClass="MyCell" customModule="TheMovieDB" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyTableCell" rowHeight="181" id="KGk-i7-Jjw" customClass="MyTableCell" customModule="TheMovieDB" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="175"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -48,8 +48,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="movieImage" destination="HxZ-dy-FSM" id="Jap-sM-1bY"/>
-                <outlet property="title" destination="KoY-jd-sAV" id="i98-az-Cez"/>
+                <outlet property="movieImage" destination="HxZ-dy-FSM" id="Slh-Dn-lU1"/>
+                <outlet property="title" destination="KoY-jd-sAV" id="Vrp-zJ-WAD"/>
             </connections>
             <point key="canvasLocation" x="87" y="-50.5"/>
         </tableViewCell>

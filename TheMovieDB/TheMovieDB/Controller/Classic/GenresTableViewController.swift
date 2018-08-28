@@ -25,9 +25,6 @@ class GenresTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            print("soy ipad")
-        }
         movieFacade.getGenres { [weak self](genres) in
             for genre in genres!{
                 print("Genres: ", genre.name)
@@ -68,6 +65,11 @@ class GenresTableViewController: UITableViewController {
         cell.genreName.text = genre.name
         cell.genreID.text = String(genre.iD)
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let myViewController = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        self.navigationController?.pushViewController(myViewController, animated: true)
     }
     
 

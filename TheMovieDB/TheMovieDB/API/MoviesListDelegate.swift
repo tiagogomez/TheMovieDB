@@ -12,4 +12,6 @@ protocol MoviesListDelegate: class {
     
     func numberOfItems() -> Int
     func configureCell(cell: ListCell, atIndexPath: IndexPath)
+    func didSelectCell(atIndexPath: IndexPath)
+    func willDisplayCell(atIndexPath: IndexPath)
 }

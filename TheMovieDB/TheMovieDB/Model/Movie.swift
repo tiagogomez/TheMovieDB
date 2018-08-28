@@ -11,6 +11,7 @@ import UIKit
 class Movie: NSObject {
     
     var poster_path: String?
+    var backdrop_path: String?
     var overview: String?
     var genre_ids:[Int]?
     var id: Int?
@@ -18,8 +19,15 @@ class Movie: NSObject {
     //var image: UIImage?
     
     init(json: [String: Any]) {
-        let imageUrl = json["poster_path"] as? String 
-        self.poster_path = "https://image.tmdb.org/t/p/w154/" + imageUrl!
+        let imageUrl = json["poster_path"] as? String
+        let backdropUrl = json["backdrop_path"] as? String
+        if backdropUrl == nil {
+            self.backdrop_path = "https://image.tmdb.org/t/p/w300/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"
+
+        }else{
+            self.backdrop_path = "https://image.tmdb.org/t/p/w300" + backdropUrl!
+        }
+        self.poster_path = "https://image.tmdb.org/t/p/w300" + imageUrl!
         self.overview = json["overview"] as? String
         self.genre_ids = json["genre_ids"] as? [Int]
         self.id = json["id"] as? Int
