@@ -10,6 +10,8 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    @IBOutlet weak var segmentedListType: UISegmentedControl!
+    
     let movieFacade = MovieFacade()
     var moviesList = [Movie]()
     let listType = MovieListType.popular

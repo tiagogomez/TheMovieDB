@@ -41,7 +41,6 @@ class MoviesCollectionViewController: UICollectionViewController {
         return 1
     }
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return moviesList.count
     }
@@ -69,7 +68,6 @@ class MoviesCollectionViewController: UICollectionViewController {
                     print(movie.original_title ?? "")
                 }
                 self?.moviesList.append(contentsOf: popularMovies)
-                //self?.moviesList = popularMovies
                 self?.collectionMoviesView.reloadData()
             }
             actualNumberOfPage = actualNumberOfPage + 1

@@ -11,7 +11,7 @@ import UIKit
 class CollectionMovieList: UICollectionView, List {
     var listDelegate: MoviesListDelegate?
    
-    init(/*layout: UICollectionViewLayout*/) {
+    init() {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 10, left:10, bottom:10, right:10)
         layout.itemSize = CGSize(width:154, height:286)

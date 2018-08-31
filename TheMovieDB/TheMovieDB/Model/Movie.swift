@@ -16,6 +16,8 @@ class Movie: NSObject {
     var genre_ids:[Int]?
     var id: Int?
     var original_title: String?
+    var vote_average: Float?
+    var release_date: String?
     //var image: UIImage?
     
     init(json: [String: Any]) {
@@ -27,11 +29,13 @@ class Movie: NSObject {
         }else{
             self.backdrop_path = "https://image.tmdb.org/t/p/w300" + backdropUrl!
         }
-        self.poster_path = "https://image.tmdb.org/t/p/w300" + imageUrl!
+        self.poster_path = "https://image.tmdb.org/t/p/w500" + imageUrl!
         self.overview = json["overview"] as? String
         self.genre_ids = json["genre_ids"] as? [Int]
         self.id = json["id"] as? Int
         self.original_title = json["original_title"] as? String
+        self.vote_average = json["vote_average"] as? Float
+        self.release_date = json["release_date"] as? String
     }
 }
 

@@ -13,7 +13,9 @@ class DetailViewController: UIViewController {
     var movie:Movie? = nil
     
     @IBOutlet weak var detailMovieImage: UIImageView!
-    @IBOutlet weak var detailMovieOveview: UILabel!
+    @IBOutlet weak var detailMovieOveview: UITextView!
+    @IBOutlet weak var detailVoteAverage: UILabel!
+    @IBOutlet weak var detailReleaseDate: UILabel!
     
 
 
@@ -25,6 +27,9 @@ class DetailViewController: UIViewController {
         if let imageUrl = URL(string: image_path!) {
             self.detailMovieImage.af_setImage(withURL: imageUrl)
         }
+        self.detailVoteAverage.text = String(describing: (movie?.vote_average)!)
+        print(String(describing: movie?.vote_average))
+        self.detailReleaseDate.text = movie?.release_date
     }
     
     override func didReceiveMemoryWarning() {
