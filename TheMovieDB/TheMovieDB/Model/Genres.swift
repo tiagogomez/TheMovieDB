@@ -17,5 +17,4 @@ class Genres: NSObject {
         self.iD = iD
         self.name = name
     }
-
 }

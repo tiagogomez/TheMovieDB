@@ -48,10 +48,24 @@
                             <outlet property="delegate" destination="4Z6-Bo-hHx" id="UyY-Tu-h6q"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="5ir-YR-Jwf"/>
+                    <navigationItem key="navigationItem" id="5ir-YR-Jwf">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="bWh-Gx-CzX">
+                            <rect key="frame" x="115" y="7" width="145" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="TopRated"/>
+                                <segment title="Popular"/>
+                            </segments>
+                            <connections>
+                                <action selector="indexChanged:" destination="4Z6-Bo-hHx" eventType="valueChanged" id="NX1-IE-SCZ"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionMoviesView" destination="bV3-CD-Kd7" id="wn2-HZ-Rdq"/>
                         <outlet property="collectionView" destination="bV3-CD-Kd7" id="Giz-mH-JpE"/>
+                        <outlet property="segmentedMovieListType" destination="bWh-Gx-CzX" id="9iI-my-ZbX"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Daf-aj-xfd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -69,22 +83,9 @@
                     <view key="view" contentMode="scaleToFill" id="yUP-Gl-hf5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VG0-Zx-wk5">
-                                <rect key="frame" x="0.0" y="583" width="375" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Popular"/>
-                                    <segment title="Top Rated"/>
-                                </segments>
-                            </segmentedControl>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" id="pRD-O8-CbB"/>
-                    <connections>
-                        <outlet property="segmentedListType" destination="VG0-Zx-wk5" id="mWW-3i-Zdc"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cLM-MG-Zkw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -93,7 +94,7 @@
         <!--Item-->
         <scene sceneID="Eaf-K2-iey">
             <objects>
-                <viewController storyboardIdentifier="DetailViewController" id="SgI-qC-qcB" customClass="DetailViewController" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="SgI-qC-qcB" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="f1H-iM-Rv3"/>
                         <viewControllerLayoutGuide type="bottom" id="Slh-8t-wL3"/>
@@ -161,10 +162,10 @@
             </objects>
             <point key="canvasLocation" x="2328.8000000000002" y="-673.31334332833592"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="Wdg-ua-MG9">
             <objects>
-                <viewController id="reT-w3-snQ" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" id="reT-w3-snQ" customClass="DetailViewController" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Wfb-fs-Gbm"/>
                         <viewControllerLayoutGuide type="bottom" id="cw3-uP-lrc"/>
@@ -173,63 +174,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Rip-Cx-eUm">
-                                <rect key="frame" x="26" y="30" width="323" height="250"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Rip-Cx-eUm">
+                                <rect key="frame" x="26" y="30" width="323" height="220.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="irj-Ej-C0r">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="irj-Ej-C0r">
                                         <rect key="frame" x="0.0" y="0.0" width="323" height="190"/>
                                     </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LS8-zi-bOE">
-                                        <rect key="frame" x="0.0" y="200" width="323" height="50"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LS8-zi-bOE">
+                                        <rect key="frame" x="0.0" y="200" width="323" height="20.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uX7-QB-4G4">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="CDA-4u-0wk"/>
-                                                    <constraint firstAttribute="width" constant="50" id="bCT-Ks-JKD"/>
-                                                </constraints>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uX7-QB-4G4">
+                                                <rect key="frame" x="0.0" y="0.0" width="261" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntN-gv-6ta">
-                                                <rect key="frame" x="70" y="0.0" width="253" height="50"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntN-gv-6ta">
+                                                <rect key="frame" x="281" y="0.0" width="42" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="dc5-bU-ZK4"/>
-                                            <constraint firstItem="ntN-gv-6ta" firstAttribute="leading" secondItem="uX7-QB-4G4" secondAttribute="trailing" constant="20" id="mVL-Xo-P3D"/>
-                                        </constraints>
                                     </stackView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="250" id="dau-bY-hFp"/>
-                                </constraints>
                             </stackView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="o60-9l-wG2">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="o60-9l-wG2">
                                 <rect key="frame" x="26" y="290" width="323" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="llJ-bR-rCj"/>
-                                </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="Rip-Cx-eUm" secondAttribute="trailing" constant="10" id="21H-KG-IEk"/>
-                            <constraint firstItem="Rip-Cx-eUm" firstAttribute="leading" secondItem="SVs-9E-xYn" secondAttribute="leadingMargin" constant="10" id="JZ3-Vs-Pgj"/>
-                            <constraint firstItem="Rip-Cx-eUm" firstAttribute="top" secondItem="Wfb-fs-Gbm" secondAttribute="bottom" constant="10" id="Kli-rJ-zc2"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="o60-9l-wG2" secondAttribute="trailing" constant="10" id="Xau-MD-jU5"/>
-                            <constraint firstItem="o60-9l-wG2" firstAttribute="leading" secondItem="SVs-9E-xYn" secondAttribute="leadingMargin" constant="10" id="kS7-Xy-fHk"/>
-                            <constraint firstItem="o60-9l-wG2" firstAttribute="top" secondItem="Rip-Cx-eUm" secondAttribute="bottom" constant="10" id="x1V-lb-rTW"/>
-                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="detailLabelStack" destination="LS8-zi-bOE" id="faL-iI-9BP"/>
+                        <outlet property="detailMovieImage" destination="irj-Ej-C0r" id="F9Z-av-MsP"/>
+                        <outlet property="detailMovieOveview" destination="o60-9l-wG2" id="sKF-es-RVv"/>
+                        <outlet property="detailReleaseDate" destination="ntN-gv-6ta" id="KFg-Ip-jga"/>
+                        <outlet property="detailVoteAverage" destination="uX7-QB-4G4" id="ceO-Qj-85z"/>
+                        <outlet property="detailWholeStack" destination="Rip-Cx-eUm" id="mb9-06-dx1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1YS-r1-Qxl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

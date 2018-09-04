@@ -16,7 +16,3 @@ class MoviesCollectionViewCell: UICollectionViewCell {
         movieImage.image=nil
     }
 }
-
-/*var int  = 0
-var string = "\(int)"
-*/

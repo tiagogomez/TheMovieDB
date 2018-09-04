@@ -25,9 +25,8 @@ class Movie: NSObject {
         let backdropUrl = json["backdrop_path"] as? String
         if backdropUrl == nil {
             self.backdrop_path = "https://image.tmdb.org/t/p/w300/kqjL17yufvn9OVLyXYpvtyrFfak.jpg"
-
         }else{
-            self.backdrop_path = "https://image.tmdb.org/t/p/w300" + backdropUrl!
+            self.backdrop_path = "https://image.tmdb.org/t/p/w780" + backdropUrl!
         }
         self.poster_path = "https://image.tmdb.org/t/p/w500" + imageUrl!
         self.overview = json["overview"] as? String

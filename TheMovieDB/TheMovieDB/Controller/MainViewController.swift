@@ -9,9 +9,7 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    
-    @IBOutlet weak var segmentedListType: UISegmentedControl!
-    
+        
     let movieFacade = MovieFacade()
     var moviesList = [Movie]()
     let listType = MovieListType.popular
@@ -21,7 +19,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        var myView: UIView?
         switch UIDevice.current.userInterfaceIdiom {
         case .phone:
             print("Soy Telefono")
@@ -32,9 +30,14 @@ class MainViewController: UIViewController {
         default:
             self.list = TableMovieList()
         }
-        
+        myView = (self.list as! UIView)
         self.list.listDelegate = self
         self.view.addSubview((self.list as! UIView))
+        myView?.translatesAutoresizingMaskIntoConstraints = false
+        myView?.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        myView?.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        myView?.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        myView?.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
 
         movieFacade.getMoviesList(listType: listType, numberOfPage: 1) {[weak self] (listMovies) in
             for movie in listMovies{

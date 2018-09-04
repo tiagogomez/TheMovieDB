@@ -11,6 +11,7 @@ import UIKit
 class MoviesCollectionViewController: UICollectionViewController {
     
     @IBOutlet var collectionMoviesView: UICollectionView!
+    @IBOutlet weak var segmentedMovieListType: UISegmentedControl!
     
     let movieFacade = MovieFacade()
     
@@ -20,17 +21,35 @@ class MoviesCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadMovieList()
+        print(self.view.bounds.size.width)
+        print(self.view.bounds.size.height)
+    }
+    
+    @IBAction func indexChanged(_ sender: Any) {
+        switch segmentedMovieListType.selectedSegmentIndex
+        {
+        case 0:
+            listType = .topRated
+            loadMovieList()
+        case 1:
+            listType = .popular
+            loadMovieList()
+        default:
+            break;
+        }
+    }
+    
+    func loadMovieList(){
+        var actualNumberOfPage = 1
         movieFacade.getMoviesList(listType: listType, numberOfPage: actualNumberOfPage) {[weak self] (popularMovies) in
-            for movie in popularMovies{
+            /*for movie in popularMovies{
                 print(movie.original_title ?? "")
-            }
+            }*/
             self?.moviesList = popularMovies
             self?.collectionMoviesView.reloadData()
         }
         actualNumberOfPage = actualNumberOfPage + 1
-        
-        print(self.view.bounds.size.width)
-        print(self.view.bounds.size.height)
     }
 
     override func didReceiveMemoryWarning() {

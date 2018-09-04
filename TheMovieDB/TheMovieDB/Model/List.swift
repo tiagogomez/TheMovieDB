@@ -11,4 +11,4 @@ import UIKit
 protocol List: class {
     weak var listDelegate: MoviesListDelegate? {get set}
     func reloadData()
-    }
+}
