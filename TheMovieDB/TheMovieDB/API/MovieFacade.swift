@@ -19,7 +19,7 @@ final class MovieFacade {
     //private let topRatedUrl = "https://api.themoviedb.org/3/movie/top_rated?api_key=1f4d7de5836b788bdfd897c3e0d0a24b"
     
     
-    func getGenres(completionHandler:@escaping ([Genres]?) -> Void){
+    func getGenres(completionHandler:@escaping ([Genres]) -> Void){
         var genres = [Genres]()
         
         Alamofire.request(genresUrl).responseJSON { response in

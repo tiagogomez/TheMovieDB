@@ -75,7 +75,7 @@
         <!--Main View Controller-->
         <scene sceneID="B7J-t4-nrb">
             <objects>
-                <viewController id="QQb-fK-hZs" customClass="MainViewController" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" id="QQb-fK-hZs" customClass="MainViewController" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dn5-6T-aga"/>
                         <viewControllerLayoutGuide type="bottom" id="7ee-T0-E9c"/>
@@ -227,7 +227,7 @@
         <!--Genres-->
         <scene sceneID="zed-LH-myL">
             <objects>
-                <tableViewController id="I7H-Cd-HhS" customClass="GenresTableViewController" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="GenresTableViewController" id="I7H-Cd-HhS" customClass="GenresTableViewController" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Crq-3T-2PB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

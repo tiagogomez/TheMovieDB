@@ -10,8 +10,8 @@ import UIKit
 
 class Genres: NSObject {
     
-    var iD: Int = 0
-    var name: String = ""
+    var iD: Int?
+    var name: String?
     
     init(iD:Int, name:String) {
         self.iD = iD

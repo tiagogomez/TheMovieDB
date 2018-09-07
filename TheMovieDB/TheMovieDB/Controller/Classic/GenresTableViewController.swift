@@ -23,10 +23,10 @@ class GenresTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         movieFacade.getGenres { [weak self](genres) in
-            for genre in genres!{
-                print("Genres: ", genre.name)
+            for genre in genres{
+                print("Genres: ", String(describing: genre.name!))
             }
-            self?.genresList=(genres)!
+            self?.genresList=(genres)
             self?.tableview.reloadData()
         }
     }
@@ -52,8 +52,8 @@ class GenresTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? GenresTableViewCell else {             fatalError("The dequeued cell is not an instance of MealTableViewCell.")
         }
         let genre = genresList[indexPath.row]
-        cell.genreName.text = genre.name
-        cell.genreID.text = String(genre.iD)
+        cell.genreName!.text = genre.name!
+        cell.genreID!.text = String(describing: genre.iD!)
         return cell
     }
     
