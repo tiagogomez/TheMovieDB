@@ -7,6 +7,8 @@
 //
 
 import XCTest
+import OHHTTPStubs
+
 @testable import TheMovieDB
 
 class MovieFacadeTest: XCTestCase {
@@ -41,7 +43,7 @@ class MovieFacadeTest: XCTestCase {
         ]
         
         mockMovie = Movie(json: mockMovieJson!)
-        mockGenres = Genres (iD: 28, name: "Action")
+        mockGenres = Genres (iD: 11, name: "Mygenre")
     }
     
     override func tearDown() {
@@ -57,18 +59,35 @@ class MovieFacadeTest: XCTestCase {
             myMovie = movies[0]
             waiting.fulfill()
         }
-        waitForExpectations(timeout: 3, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
         XCTAssertEqual(myMovie?.overview, mockMovie?.overview)
     }
     
     func testGetGenres(){
+        let myGenreJson: [String : Any] = [
+                "genres": [
+                    [
+                        "id": 15,
+                        "name": "Mygenre"
+                    ],
+                    [
+                        "id": 12,
+                        "name": "Adventure"
+                    ]
+                ]
+            ]
+        stub(condition: isAbsoluteURLString("https://api.themoviedb.org/3/genre/movie/list?api_key=1f4d7de5836b788bdfd897c3e0d0a24b&language=en-US")) { _ in
+            return OHHTTPStubsResponse(jsonObject: myGenreJson,
+                                       statusCode: 200,
+                                       headers: nil)
+        }
         var myGenres: Genres?
         let waiting = expectation(description: "Esperando Servicio")
         movieFacade.getGenres { (genres) in
             myGenres = genres[0]
             waiting.fulfill()
         }
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
         XCTAssertEqual(myGenres?.iD, mockGenres?.iD)
     }
     
